@@ -4,6 +4,7 @@ import time
 from bs4 import BeautifulSoup
 from urllib.request import Request, urlopen
 import re
+from wget import bar_adaptive
 import wget
 now = time.strftime("%c")
 
@@ -31,6 +32,7 @@ i = list(set(i))
 for link in i:
     link = link.replace('\"', '')
     link = "https:" + link
-    wget.download(link)
+    print(link)
+    wget.download(link, bar=bar_adaptive)
 
 
