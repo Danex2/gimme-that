@@ -1,2 +1,2 @@
 # gimme-that
-downloads images
+downloads images from 4chan threads
