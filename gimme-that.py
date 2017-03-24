@@ -27,12 +27,9 @@ content = str(content)
 #bunch of regexp stuff that took me really long to make
 #still don't understand
 #finds all the images in a thread
-i = re.findall('\"[^\"]*/i.4cdn.org/[a-z]{0,4}/[0-9]*.(?:jpg|png)\"', content)
+i = re.findall('\"[^\"]*/i.4cdn.org/[a-z]{0,4}/[0-9]*.(?:jpg|png|gif)\"', content)
 i = list(set(i))
 for link in i:
     link = link.replace('\"', '')
     link = "https:" + link
-    print(link)
-    wget.download(link, bar=bar_adaptive)
-
-
+    wget.download(link)
