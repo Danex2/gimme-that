@@ -15,19 +15,19 @@ req = Request(chan_url, headers={'User-Agent': 'Mozilla/5.0'})
 url = urlopen(req)
 content = url.read()
 soup = BeautifulSoup(content, "html.parser")
-
-os.chdir(os.path.join( os.getenv('USERPROFILE'), 'Downloads'))
-if os.path.isdir((time.strftime("%d-%m-%Y"))):
-    os.chdir(time.strftime("%d-%m-%Y"))
-elif not os.path.isdir(time.strftime("%d-%m-%Y")):
-    os.mkdir(time.strftime("%d-%m-%Y"))
-    os.chdir(time.strftime("%d-%m-%Y"))
+save = input("Where would you like to save: ")
+#os.chdir(os.path.join( os.getenv('USERPROFILE'), 'Downloads'))
+if os.path.isdir(save):
+    os.chdir(save)
+elif not os.path.isdir(save):
+    os.mkdir(save)
+    os.chdir(save)
 
 content = str(content)
 #bunch of regexp stuff that took me really long to make
 #still don't understand
 #finds all the images in a thread
-i = re.findall('\"[^\"]*/i.4cdn.org/[a-z]{0,4}/[0-9]*.(?:jpg|png|gif)\"', content)
+i = re.findall('\"[^\"]*/i.4cdn.org/[a-z]{0,4}/[0-9]*.(?:jpg|png|gif|webm)\"', content)
 i = list(set(i))
 for link in i:
     link = link.replace('\"', '')
